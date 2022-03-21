@@ -2,7 +2,6 @@
 #include <fstream>         // Combination of creates, reads and writes to files
 #include <string>
 #include <vector>
-#include <sstream>
 
 using namespace std;
 
