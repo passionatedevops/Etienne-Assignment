@@ -46,8 +46,10 @@ void DefineWord(vector<Word> Dictionary)
 	cout << "Enter a word : " ;
 	cin >> userInput;
 
+	//loop though vector
 	for (int i = 0; i < Dictionary.size(); i++) {
 
+		//print name, type, define if userInput matches
 		if (Dictionary[i].name.compare(userInput) == 0)
 		{
 			cout << "name : "  << Dictionary[i].name << "\ntype: " << Dictionary[i].type << "\ndefinition: " << Dictionary[i].definition << endl;
@@ -56,7 +58,7 @@ void DefineWord(vector<Word> Dictionary)
 		
 	}
 
-
+	//print message in case no match found with userInput 
 	cout << "exact word not found" << endl;
 
 	
@@ -81,16 +83,19 @@ void GivenCharacters(vector<Word> Dictionary)
 	cout << "Enter minimum number of occurrences of that character : ";
 	cin >> minOccurance;
 
+	//loop though vector
 	for (int i = 0; i < Dictionary.size(); i++) {
 
-		// check string contains user input char
+		//check string contains user input char
 		if (Dictionary[i].name.find(userInputChar) != string::npos) {
 			
 			actualOccurance = 0;
+			//count occurrences of that character in  word 
 			for(int j = 0; (j = Dictionary[i].name.find(userInputChar, j)) != std::string::npos; j++) {
 				actualOccurance++;
 			}
 
+			//printing out the words that include that character the given number of times or greater
 			if (actualOccurance >= minOccurance)
 			{
 				cout << Dictionary[i].name << endl;
@@ -132,30 +137,36 @@ void ListAllWords(vector<Word> Dictionary)       // task 3 function
 
 
 
-int main()                // put a loop onto all functions to allow continous asking of name of definitions unless you press 2(quit)
+int main()               
 {
+
+	//var declaration 
 	string filename = "dictionary2022_S1.txt";
 	string name, type, definition, star;
-
-
 	struct Word w;
+	string line;
+	int linenumber = 1;
+	int menuItem;
+	string confirm;
+
+
 	//declare an STL Vector of Word instances
 	vector<Word> Dictionary;
 
 	cout << "Loading application ... Please wait .. " << endl;
 
 
-	//read file and store into structure 
-
+	//read file 
 	ifstream  ifs(filename);
 
+	//exit application if not able to access the file 
 	if (ifs.fail()) {
 		cout << "Error opening  file (dictionary2022_S1.txt)" << endl;
 		exit(1);
 	}
 
-	string line;
-	int linenumber = 1;
+	
+	//read each line of the file and store into the structure variable 
 	while (getline(ifs, line))
 	{
 		if (linenumber == 2)
@@ -176,6 +187,7 @@ int main()                // put a loop onto all functions to allow continous as
 		else {
 			star = line;
 
+			//store the structure in the Dictionary vector
 			Dictionary.push_back(w);
 
 			linenumber = 0;
@@ -193,15 +205,17 @@ int main()                // put a loop onto all functions to allow continous as
 	}*/
 
 
-	//show user menu items 
-	int menuItem;
-	string confirm;
+	
+	
 	do
 	{
 		
+
+		//show user menu items 
 		menuItem = menuSelect();
 		switch (menuItem)
 		{
+			// call function based on user selection
 			case 1: DefineWord(Dictionary); break;
 			case 2: GivenCharacters(Dictionary); break;
 			case 3: ListAllWords(Dictionary); break;
