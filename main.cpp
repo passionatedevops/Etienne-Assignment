@@ -18,7 +18,7 @@ struct Word  //Struct that hold each word
 int menuSelect()
 {
 	int mItem;
-	cout << "Press (1) to define a word and display the word type \n Press (2) to find words that contain a given character \n Press (3) to list all words in the dictionary that have a 'q' with no 'u' after \n";
+	cout << "Press (1) to define aa word and display the word type \n Press (2) to find words that contain a given character \n Press (3) to list all words in the dictionary that have a 'q' with no 'u' after \n";
 	cin >> mItem;
 
 	while (!(mItem > 3) || (mItem < 1))
